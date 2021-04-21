@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+  color: white;
+  height: 100vh;
+  display: flex;
+}
+
+.links {
+  color: red;
+}
+
+html {
+  background-color: black;
+}
+
+.favorites {
+  color: white
+}

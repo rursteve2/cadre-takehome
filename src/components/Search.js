@@ -1,0 +1,49 @@
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+import {Redirect} from 'react-router-dom'
+
+
+export default function Search(props) {
+    const {coords, setCoords, setGeocode} = props
+    const [query, setQuery] = useState('')
+    const [error, setError] = useState()
+
+    useEffect(() => {
+        console.log(coords)
+    }, [coords])
+
+    const handleInput = (e) => {
+        e.preventDefault()
+        console.log(e.target.value)
+        setQuery(e.target.value)
+    }
+    
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        let parsedQuery = query.split(" ").join("%20")
+        console.log(parsedQuery)
+        axios.get(`http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_GEOCODE}&query=${parsedQuery}`)
+        .then(function (response) {
+            console.log(response);
+            setGeocode(response.data.data[0])
+            setCoords([response.data.data[0].latitude, response.data.data[0].longitude])
+            setError()
+          })
+          .catch(function (error) {
+            setError(error)
+            console.log(error);
+          })
+
+    }
+    return (
+        <div>
+            {coords ? <Redirect to="/today" /> : null}
+            <h3>Enter a location: Zip code or Full Address</h3>
+            <form onSubmit={handleSubmit}>
+                <input type="text" value={query} onChange={handleInput}/>
+                <button type="submit">Search</button>
+                {error ? <p>An error has occured. Please check your address and try again.</p> : null}
+            </form>
+        </div>
+    )
+}
