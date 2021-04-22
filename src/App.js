@@ -68,8 +68,8 @@ function App() {
     <Router>
       <div className="favorites">
         <h4 className="favoritesTitle">Favorites</h4>
-        {favorites[0] ? favorites.map((item) => ( 
-          <div className="singleFavorite">
+        {favorites[0] ? favorites.map((item, key) => ( 
+          <div key={key} className="singleFavorite">
           <button onClick={() => loadFavorite(item)}>{item.name}</button>
           <button onClick={() => removeFavorite(item)}>Unfavorite</button>
           </div>

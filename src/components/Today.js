@@ -1,11 +1,9 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
 
 export default function Today(props) {
-    const {coords, geocode, today} = props    
+    const {geocode, today} = props    
     return (
         <div>
-            {/* {coords ? null : <Redirect to="/"/>} */}
             <h3>Current Weather in {geocode.label}</h3>
             {today ?
             <div className="weatherContainer">

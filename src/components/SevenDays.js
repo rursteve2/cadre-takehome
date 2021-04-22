@@ -1,12 +1,10 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
 
 
 export default function SevenDays(props) {
-    const {coords, geocode, sevenDays} = props
+    const {geocode, sevenDays} = props
     return (
         <div>
-            {/* {coords ? null : <Redirect to="/"/>} */}
             <h3>Weather for the next 7 days in {geocode.label}</h3>
             {sevenDays ?
             <div className="weatherContainer">
