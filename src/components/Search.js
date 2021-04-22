@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
 
@@ -7,10 +7,6 @@ export default function Search(props) {
     const {coords, setCoords, setGeocode} = props
     const [query, setQuery] = useState('')
     const [error, setError] = useState()
-
-    useEffect(() => {
-        console.log(coords)
-    }, [coords])
 
     const handleInput = (e) => {
         e.preventDefault()
@@ -27,7 +23,11 @@ export default function Search(props) {
             console.log(response);
             setGeocode(response.data.data[0])
             setCoords([response.data.data[0].latitude, response.data.data[0].longitude])
-            setError()
+            if(!response.data.data[0].latitude) {
+                setError("Error")
+            } else {
+                setError()
+            }
           })
           .catch(function (error) {
             setError(error)
@@ -36,7 +36,7 @@ export default function Search(props) {
 
     }
     return (
-        <div>
+        <div className="search">
             {coords ? <Redirect to="/today" /> : null}
             <h3>Enter a location: Zip code or Full Address</h3>
             <form onSubmit={handleSubmit}>

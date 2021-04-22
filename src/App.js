@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 import Search from './components/Search'
 import Today from './components/Today'
 import SevenDays from './components/SevenDays'
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom"
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom"
 import axios from 'axios'
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
     })
     .catch((error) => {
         console.log(error)
+        alert("An error has occured. Please try again with a different address.")
     })
 }
 
@@ -55,27 +56,40 @@ function App() {
     setGeocode({label: item.name})
   }
 
+  const removeFavorite = (item) => {
+    let newFavorites = [...favorites]
+    console.log(newFavorites.indexOf(item), newFavorites)
+    newFavorites.splice(newFavorites.indexOf(item), 1)
+    localStorage.setItem('favorites', JSON.stringify(newFavorites))
+    setFavorites(JSON.parse(localStorage.getItem('favorites')))
+  }
+
   return (
     <Router>
       <div className="favorites">
-        <p>Favorites</p>
+        <h4 className="favoritesTitle">Favorites</h4>
         {favorites[0] ? favorites.map((item) => ( 
+          <div className="singleFavorite">
           <button onClick={() => loadFavorite(item)}>{item.name}</button>
+          <button onClick={() => removeFavorite(item)}>Unfavorite</button>
+          </div>
         )) : 'You have no favorite locations!'}
       </div>
       <div className="App">
         {coords ? 
         <div>
-          <button onClick={addToFavorites}>Favorite this location!</button>
-          <Link className="links" to="today">Today's weather</Link> 
-          <Link className="links" to="7day">Seven Day Forecast</Link>
-        </div> : null}
+        <button className="favoriteButton" onClick={addToFavorites}>Favorite this location!</button>
+        <div className="links">
+          <Link className="singleLink" to="/" onClick={() => setCoords()}>Back to search</Link> 
+          <Link className="singleLink" to="today">Today's weather</Link> 
+          <Link className="singleLink" to="7day">Seven Day Forecast</Link>
+        </div></div> : null}
         <Switch>
           <Route path="/today">
-            <Today coords={coords} geocode={geocode} today={today}/>
+            {coords ? <Today coords={coords} geocode={geocode} today={today}/> : <Redirect to="/"/>}
           </Route>
           <Route path="/7day">
-            <SevenDays coords={coords} geocode={geocode} sevenDays={sevenDays}/>
+            {coords ? <SevenDays coords={coords} geocode={geocode} sevenDays={sevenDays}/> : <Redirect to="/"/>}
           </Route>
           <Route exact path="/">
             <Search coords={coords} setCoords={setCoords} geocode={geocode} setGeocode={setGeocode}/>

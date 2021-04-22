@@ -1,13 +1,17 @@
 import React from 'react'
+import {Redirect} from 'react-router-dom'
+
 
 export default function SevenDays(props) {
-    const {geocode, sevenDays} = props
+    const {coords, geocode, sevenDays} = props
     return (
         <div>
+            {/* {coords ? null : <Redirect to="/"/>} */}
+            <h3>Weather for the next 7 days in {geocode.label}</h3>
             {sevenDays ?
-            <div><h1>Weather for the next 7 days in {geocode.label}</h1>
+            <div className="weatherContainer">
                 {sevenDays[0] && sevenDays.map((item, key) => (
-                    <div key={key}>
+                    <div key={key} className="singleWeather">
                         <h5>{item.name}</h5>
                         <p>{new Date(item.startTime).toLocaleDateString('en-US')}</p>
                         <p>{new Date(item.startTime).toLocaleTimeString('en-US')}</p>
@@ -19,5 +23,6 @@ export default function SevenDays(props) {
                 ))}
             </div> : <h1>Loading...</h1>}
         </div>
+
     )
 }

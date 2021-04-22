@@ -1,18 +1,114 @@
 .App {
   text-align: center;
   color: white;
-  height: 100vh;
-  display: flex;
+  height: 100%;
+  width: 100%
 }
 
 .links {
-  color: red;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+button {
+  padding: 2px;
+  border: none;
+  border-radius: 5px;
+  background-color: black;
+  color: #F8F9F9
+}
+
+button:hover {
+  background-color: #676767
+}
+
+.singleLink {
+  color: #3498DB;
+  text-decoration: none;
+}
+
+.singleLink:hover {
+  color: #468499;
 }
 
 html {
   background-color: black;
 }
 
+img {
+  border-radius: 30px;
+  
+}
+
+.favoritesTitle {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.favoriteButton {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
 .favorites {
-  color: white
+  color: white;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-self: center;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.singleFavorite {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%
+}
+
+.weatherContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-self: center;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.singleWeather {
+  flex: 0 0 auto;
+  background-color: #f4f4f4;
+  color: black;
+  border: 4px solid #3498DB;
+  box-shadow: inset 0 0 20px #808080;
+  border-radius: 8px;
+  margin: 4px;
+  padding: 4px;
+}
+
+::-webkit-scrollbar {
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: black; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: rgb(56, 56, 56); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
