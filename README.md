@@ -1,4 +1,7 @@
 # Getting Started
+To get started, clone the repo and run ```npm start```.
+
+## Info
 This app uses React, with API's from ```https://positionstack.com/``` and ```https://www.weather.gov/documentation/services-web-api#/``` An API key is needed for positionstack, however I am using their free plan and have no monetary or soft limit restrictions and therefore have included it in the application. If the API key does not work, feel free to get a new one from ```https://positionstack.com/```. Localstorage is used to favorite locations, and the same location can be favorited more than once. 
 
 ## Things to consider
