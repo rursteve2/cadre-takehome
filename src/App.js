@@ -78,10 +78,9 @@ function App() {
       <div className="App">
         {coords ? 
         <div>
-        <button className="favoriteButton" onClick={addToFavorites}>Favorite this location!</button>
         <div className="links">
           <Link className="singleLink" to="/" onClick={() => setCoords()}>Back to search</Link> 
-          <Link className="singleLink" to="today">Today's weather</Link> 
+          <Link className="singleLink" to="today">Today's Weather</Link> 
           <Link className="singleLink" to="7day">Seven Day Forecast</Link>
         </div></div> : null}
         <Switch>
@@ -95,6 +94,7 @@ function App() {
             <Search coords={coords} setCoords={setCoords} geocode={geocode} setGeocode={setGeocode}/>
           </Route>
         </Switch>
+        {coords ? <button className="favoriteButton" onClick={addToFavorites}>Favorite this location!</button> : null}
       </div>
     </Router>
   );
