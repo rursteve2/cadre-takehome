@@ -13,6 +13,16 @@
 
 }
 
+.temp {
+  display: inline;
+  margin: 10px;
+}
+
+.titletemp {
+  display: inline;
+  margin: 10px;
+}
+
 button {
   padding: 2px;
   border: none;
