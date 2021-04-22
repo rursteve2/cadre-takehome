@@ -40,8 +40,8 @@ export default function Search(props) {
             {coords ? <Redirect to="/today" /> : null}
             <h3>Enter a location: Zip code or Full Address</h3>
             <form onSubmit={handleSubmit}>
-                <input type="text" value={query} onChange={handleInput}/>
-                <button type="submit">Search</button>
+                <input placeholder="Address or Zip" className="searchbar" type="text" value={query} onChange={handleInput}/>
+                <button className="searchsubmit" type="submit">Search</button>
                 {error ? <p>An error has occured. Please check your address and try again.</p> : null}
             </form>
         </div>

@@ -13,6 +13,17 @@
 
 }
 
+.searchbar {
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.searchsubmit {
+  margin-left: 5px;
+  padding: 15px;
+  border-radius: 15px;
+}
+
 .temp {
   display: inline;
   margin: 10px;
