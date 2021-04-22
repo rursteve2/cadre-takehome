@@ -18,7 +18,7 @@ export default function Search(props) {
         e.preventDefault()
         let parsedQuery = query.split(" ").join("%20")
         console.log(parsedQuery)
-        axios.get(`http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_GEOCODE}&query=${parsedQuery}`)
+        axios.get(`http://api.positionstack.com/v1/forward?access_key=2f8f8958b1e0532eeadca9b3b88cf587&query=${parsedQuery}`)
         .then(function (response) {
             console.log(response);
             setGeocode(response.data.data[0])
